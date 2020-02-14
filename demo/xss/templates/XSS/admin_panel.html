@@ -1,0 +1,29 @@
+{% extends 'xss/base.html' %}
+
+{% block content %}
+{% load filters %}
+{% if request.user.is_superuser %}
+
+<div class="pure-g" style="justify-content: center;">
+    <div class="pure-u-1-3">
+        <table class="pure-table">
+            <thead>
+                <tr>
+                    <th>IPs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in users %}
+                <tr>
+                    <th>{{i.id}}</th>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

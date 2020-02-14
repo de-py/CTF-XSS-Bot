@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>NetVD </title>
+    {% load static %}
+    {% load filters %}
+    <link rel="stylesheet" href="{% static 'xss/pure/pure-min.css' %}" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w">
+    <link rel="stylesheet" href="{% static 'xss/main.css' %}">
+    <div class="pure-menu pure-menu-horizontal">
+        <a href="/" class="pure-menu-heading pure-menu-link">NetVD </a>
+        <ul class="pure-menu-list">
+            {% if user.is_authenticated %}
+            Welcome, {{user}}
+            <li class="pure-menu-item"><a href="{% url 'profile' %}" class="pure-menu-link">Profile</a></li>
+            {% if request.user|has_group:"FakeAdmin" %} 
+            <li class="pure-menu-item"><a href="{% url 'admin' %}" class="pure-menu-link">Admin</a></li>
+            {% else %}
+            <li class="pure-menu-item"><a href="{% url 'logout' %}" class="pure-menu-link">Logout</a></li>
+            {% endif %}
+            {% else %}
+            <li class="pure-menu-item"><a href="{% url 'login' %}" class="pure-menu-link">Login</a></li>
+            <li class="pure-menu-item"><a href="{% url 'register' %}" class="pure-menu-link">Register</a></li>
+            {% endif %}
+
+            
+            <!-- <li class="pure-menu-item"><a href="#" class="pure-menu-link">Finance</a></li> -->
+        </ul>
+    </div>
+  </head>
+  <body>
+
+    <pre>
+      <p>
+        Welcome. This site is under development. However, feel free to create a profile to use when we get up and running.<br>
+        (Exam note) -> Use some form of your real names as username when you register so I know who you are.<br>
+        Burp Suite Download -> https://portswigger.net/burp/communitydownload
+        <!-- <Mark> </Mark> -->
+      </p>
+      
+    
+    </pre>
+        {% block content %}
+
+        {% endblock %}
+
+
+  </body>
+</html>

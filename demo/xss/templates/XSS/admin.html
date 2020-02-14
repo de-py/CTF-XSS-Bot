@@ -1,0 +1,8 @@
+{% extends 'xss/base.html' %}
+
+{% block content %}
+{% load filters %}
+{% if request.user|has_group:"FakeAdmin" %} 
+Flag: {{ flag }}
+{% endif %}
+{% endblock %}

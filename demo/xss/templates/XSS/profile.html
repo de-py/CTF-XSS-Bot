@@ -1,0 +1,40 @@
+{% extends 'xss/base.html' %}
+
+{% block content %}
+
+
+<div class="header"><h1>Profile</h1></div>
+
+<!-- <div class="content"> -->
+        <div class="pure-g">
+                <li class="pure-u-1-8">
+                        <div class="pure-menu custom-restricted-width">
+                                        <span class="pure-menu-heading">Profile Actions</span>
+                                        
+                                        <ul class="pure-menu-list">
+                                                <li class="pure-menu-item"><a href="{% url 'profile' %}" class="pure-menu-link">View Profile</a></li>
+                                                <li class="pure-menu-item"><a href="{% url 'update_bio' %}" class="pure-menu-link">Update Profile</a></li>
+                                                <li class="pure-menu-item"><a href="{% url 'test' %}" class="pure-menu-link">Test Profile Display</a></li>
+                        
+                                        </ul>
+                        </div>
+                </li>
+                <li class="pure-u-1-4"></li>
+                <li class="pure-u-1-2">
+                        {% block profiles %} 
+                        <p> {{ bio }}</p>
+                        {% endblock %} 
+
+                </li>
+        </div>
+
+                
+<!-- </div> -->
+
+
+
+
+{% endblock %} 
+
+
+

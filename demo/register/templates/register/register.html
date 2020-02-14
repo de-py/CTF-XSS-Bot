@@ -1,0 +1,9 @@
+{% extends 'xss/base.html' %} 
+{% block content %}
+<h2>Register</h2>
+<form class="pure-form" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input class="pure-button pure-button-primary" type="submit" value="Register">
+</form>
+{% endblock %} 

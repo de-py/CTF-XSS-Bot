@@ -1,0 +1,31 @@
+{% extends 'xss/profile.html' %}
+
+{% block profiles %}
+<script type="text/javascript">
+        function validateForm(event) {
+            var x = document.forms["Profile"]["bio"].value;
+            console.log(x)
+            if (x.indexOf("<script>") != -1) {
+                alert("Sorry, we validate our forms up front. No script tags allowed. You would need to obfuscate the words or use a web proxy tool to get around these validators!");
+                event.preventDefault();
+
+                return false;
+            }
+        
+        return true;
+        }
+</script>
+
+<p> Please keep profiles professional. The admin checks them <b>frequently</b> (about once per minute) and you will be asked to change it if it is not work appropriate. Also, no code please! The web admin doesn't like dynamic web pages but can't figure out how to turn it off.<br><br>
+    <mark> (Exam Hint, Django seems to drop plus signs that look like this: "+" It looks like you may need to find a way around this too)</mark>
+</p>
+<form name="Profile" class="pure-form" onsubmit="return validateForm(event);" action="{% url 'update_bio' %}" method="post">
+        <fieldset>
+        {% csrf_token %}
+
+        <label for="Bio">Update Profile: </label>
+        <input id="bio" type="text" name="bio">
+        <input class="pure-button pure-button-primary" type="submit" value="OK">
+        </fieldset>
+</form>
+{% endblock %}

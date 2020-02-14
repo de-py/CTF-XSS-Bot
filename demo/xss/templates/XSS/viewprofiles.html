@@ -1,0 +1,38 @@
+{% extends 'xss/base.html' %}
+{% block content %}
+{% load filters %}
+{% if request.user|has_group:"FakeAdmin" %} 
+
+    {% for user in users %}
+    
+    
+    Username:{{user.username}}
+    Bio: {{user.profile.bio}}
+    {{user.encoded}}
+    
+    <form class="pure-form" action="{% url 'viewprofiles' %}" method="post">
+            {% csrf_token %}
+                      
+             <input id="{{user.id}}" type="hidden" name="post" value={{user.profile.bio|encode_js}}>
+
+            <input class="pure-button pure-button-primary" name="{{user.id}}" type="submit" value="View {{user.username}}">
+    </form>  
+    
+    
+    {% endfor %}
+
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {% autoescape off %}{{ message }}{% endautoescape %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+{% endif %}
+    
+{% endblock %} 

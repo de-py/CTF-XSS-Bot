@@ -1,0 +1,23 @@
+{% extends 'xss/profile.html' %}
+{% block profiles %}
+<p> Use this page to test what your profile will look like when you save it.</p>
+<form class="pure-form" action="{% url 'test' %}" method="post">
+        {% csrf_token %}
+        <label for="Post">Profile display test: </label>
+        <input id="post" type="text" name="post">
+        <input class="pure-button pure-button-primary" type="submit" value="Test">
+    </form>
+    
+    {% if messages %}
+    
+        {% for message in messages %}
+        {% if message.tags %} {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {% autoescape off %}{{ message }}{% endautoescape %}
+    
+        {% endfor %}
+    
+    {% endif %}
+{% endblock %} 
+
+
