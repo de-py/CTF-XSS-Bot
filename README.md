@@ -1,4 +1,4 @@
-# XSS_CTF_Bot
+# CTF Bot (XSS)
 
 This was a project I created to give to students as a CTF type exercise. The goal is for the student to retrieve the admin token using XSS and then use it to get the flag. At one point it was graded and so there are some minor anti-cheating mechanisms such as having a unique flag for each student generated on demand in addition to IP address logging. 
 
